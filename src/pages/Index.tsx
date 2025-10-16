@@ -17,7 +17,9 @@ export default function Index() {
     carType: ''
   });
 
-  const [selectedH1, setSelectedH1] = useState(0);
+  const [selectedH1] = useState(0);
+  const whatsappLink = "https://wa.me/79644415944?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20.%D1%85%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B8";
+  const phoneNumber = "+7 (964) 441-59-44";
   const h1Variants = [
     'Доставим ваш автомобиль из Уссурийска во Владивосток за 24 часа — безопасно и с гарантией',
     'Переезд или покупка авто? Перевезем машину по России без повреждений с полным страхованием груза',
@@ -43,7 +45,7 @@ export default function Index() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Icon name="Truck" className="text-primary" size={32} />
-            <span className="font-heading font-bold text-xl text-primary">АВТО АЗРОДИ</span>
+            <span className="font-heading font-bold text-xl text-primary">ТК Клевер</span>
           </div>
           <nav className="hidden md:flex gap-6">
             {['process', 'prices', 'services', 'reviews', 'faq'].map((item) => (
@@ -60,10 +62,15 @@ export default function Index() {
               </button>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
             <Icon name="Phone" size={20} className="text-primary" />
-            <span className="font-semibold">+7-XXX-XXX-XX-XX</span>
-          </div>
+            <span className="font-semibold">{phoneNumber}</span>
+          </a>
         </div>
       </header>
 
@@ -548,23 +555,35 @@ export default function Index() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { icon: 'Phone', title: '+7-XXX-XXX-XX-XX', desc: 'Звонок бесплатный' },
+                { icon: 'Phone', title: phoneNumber, desc: 'Звонок бесплатный', link: whatsappLink },
                 { icon: 'MessageCircle', title: 'WhatsApp / Telegram', desc: 'Быстрый ответ' },
                 { icon: 'Mail', title: 'info@company.ru', desc: 'Ответим в течение часа' },
                 { icon: 'MapPin', title: 'Владивосток, ул. Примерная, 10', desc: 'Работаем 24/7' }
-              ].map((contact, idx) => (
-                <Card key={idx} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6 flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Icon name={contact.icon} className="text-primary" size={24} />
-                    </div>
-                    <div>
-                      <p className="font-semibold">{contact.title}</p>
-                      <p className="text-sm text-muted-foreground">{contact.desc}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              ].map((contact, idx) => {
+                const CardWrapper = contact.link ? 'a' : 'div';
+                const cardProps = contact.link ? {
+                  href: contact.link,
+                  target: '_blank',
+                  rel: 'noopener noreferrer',
+                  className: 'block'
+                } : {};
+                
+                return (
+                  <CardWrapper key={idx} {...cardProps}>
+                    <Card className="hover:shadow-lg transition-shadow h-full">
+                      <CardContent className="p-6 flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <Icon name={contact.icon} className="text-primary" size={24} />
+                        </div>
+                        <div>
+                          <p className="font-semibold">{contact.title}</p>
+                          <p className="text-sm text-muted-foreground">{contact.desc}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CardWrapper>
+                );
+              })}
             </div>
 
             <p className="text-center text-muted-foreground mt-8">
@@ -660,7 +679,7 @@ export default function Index() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Icon name="Truck" size={28} />
-                <span className="font-heading font-bold text-xl">АВТО АЗРОДИ</span>
+                <span className="font-heading font-bold text-xl">ТК Клевер</span>
               </div>
               <p className="text-white/80 text-sm">
                 Профессиональная перевозка автомобилей по России
@@ -685,7 +704,7 @@ export default function Index() {
               <div className="space-y-2 text-sm">
                 <p className="flex items-center gap-2">
                   <Icon name="Phone" size={16} />
-                  +7-XXX-XXX-XX-XX
+                  {phoneNumber}
                 </p>
                 <p className="flex items-center gap-2">
                   <Icon name="Mail" size={16} />
@@ -713,7 +732,7 @@ export default function Index() {
           </div>
 
           <div className="border-t border-white/20 pt-8 text-center text-sm text-white/60">
-            <p>© 2025 АВТО АЗРОДИ. Все права защищены.</p>
+            <p>© 2025 ТК Клевер. Все права защищены.</p>
           </div>
         </div>
       </footer>
