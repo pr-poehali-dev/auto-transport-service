@@ -44,8 +44,11 @@ export default function Index() {
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-border shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Icon name="Truck" className="text-primary" size={32} />
-            <span className="font-heading font-bold text-xl text-primary">ТК Клевер</span>
+            <img 
+              src="https://cdn.poehali.dev/files/042710e5-8600-4d2f-8416-aaf9d91ee31e.jpg" 
+              alt="ТК Клевер" 
+              className="h-12 w-auto"
+            />
           </div>
           <nav className="hidden md:flex gap-6">
             {['process', 'prices', 'services', 'reviews', 'faq'].map((item) => (
@@ -75,7 +78,13 @@ export default function Index() {
       </header>
 
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary/95 to-secondary overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://cdn.poehali.dev/files/042710e5-8600-4d2f-8416-aaf9d91ee31e.jpg" 
+            alt="Background" 
+            className="w-full h-full object-contain"
+          />
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
@@ -677,9 +686,12 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Icon name="Truck" size={28} />
-                <span className="font-heading font-bold text-xl">ТК Клевер</span>
+              <div className="mb-4">
+                <img 
+                  src="https://cdn.poehali.dev/files/042710e5-8600-4d2f-8416-aaf9d91ee31e.jpg" 
+                  alt="ТК Клевер" 
+                  className="h-16 w-auto brightness-0 invert"
+                />
               </div>
               <p className="text-white/80 text-sm">
                 Профессиональная перевозка автомобилей по России
