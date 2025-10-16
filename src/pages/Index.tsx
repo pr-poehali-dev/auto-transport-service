@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
 import { toast } from 'sonner';
 
@@ -15,6 +16,15 @@ export default function Index() {
     route: '',
     carType: ''
   });
+
+  const [selectedH1, setSelectedH1] = useState(0);
+  const h1Variants = [
+    'Доставим ваш автомобиль из Уссурийска во Владивосток за 24 часа — безопасно и с гарантией',
+    'Переезд или покупка авто? Перевезем машину по России без повреждений с полным страхованием груза',
+    'От 8500₽ за перевозку авто Уссурийск–Владивосток. Доставка точно в срок или компенсация',
+    'Нужно перевезти автомобиль по России? Закрытый автовоз, страховка до 2 млн руб. и контроль 24/7',
+    'Перевозка авто без переплат и скрытых платежей: честная цена + полис страхования в подарок'
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,14 +39,14 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-border">
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-border shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Icon name="Truck" className="text-primary" size={32} />
-            <span className="font-heading font-bold text-xl text-primary">AutoTrans</span>
+            <span className="font-heading font-bold text-xl text-primary">АВТО АЗРОДИ</span>
           </div>
           <nav className="hidden md:flex gap-6">
-            {['process', 'prices', 'reviews', 'faq'].map((item) => (
+            {['process', 'prices', 'services', 'reviews', 'faq'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item)}
@@ -44,6 +54,7 @@ export default function Index() {
               >
                 {item === 'process' && 'Как работает'}
                 {item === 'prices' && 'Тарифы'}
+                {item === 'services' && 'Услуги'}
                 {item === 'reviews' && 'Отзывы'}
                 {item === 'faq' && 'FAQ'}
               </button>
@@ -56,31 +67,41 @@ export default function Index() {
         </div>
       </header>
 
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary via-secondary/90 to-primary overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary/95 to-secondary overflow-hidden pt-20">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <Badge className="mb-6 bg-accent hover:bg-accent text-white px-4 py-2 text-sm">
+            <Badge className="mb-6 bg-accent hover:bg-accent text-white px-4 py-2 text-sm animate-pulse">
               Доставили 2500+ автомобилей
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
-              Доставим ваш автомобиль из Уссурийска во Владивосток за 24 часа
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+              {h1Variants[selectedH1]}
             </h1>
-            <p className="text-xl text-white/90 mb-4 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl mx-auto">
               Безопасно, с гарантией и полным страхованием
             </p>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto">
               Автовозы класса люкс и эконом. Работаем по договору с фиксацией сроков. Перевозим легковые авто, кроссоверы и внедорожники по всей России
             </p>
             
-            <Button 
-              size="lg" 
-              className="bg-accent hover:bg-accent/90 text-white font-semibold text-lg px-8 py-6 mb-8"
-              onClick={() => scrollToSection('cta-form')}
-            >
-              Получить расчет за 5 минут
-            </Button>
+            <div className="flex flex-wrap gap-4 justify-center mb-8">
+              <Button 
+                size="lg" 
+                className="bg-accent hover:bg-accent/90 text-white font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                onClick={() => scrollToSection('cta-form')}
+              >
+                Получить расчет за 5 минут
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm font-semibold text-lg px-8 py-6"
+                onClick={() => scrollToSection('prices')}
+              >
+                Смотреть тарифы
+              </Button>
+            </div>
 
             <div className="flex flex-wrap justify-center gap-6 text-white">
               {[
@@ -88,7 +109,7 @@ export default function Index() {
                 { icon: 'Shield', text: 'Страхование без переплат' },
                 { icon: 'MapPin', text: 'Трек авто онлайн' }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2">
+                <div key={idx} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
                   <Icon name={item.icon} size={20} />
                   <span className="font-medium">{item.text}</span>
                 </div>
@@ -105,9 +126,12 @@ export default function Index() {
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-secondary mb-4">
                 Пытались самостоятельно организовать доставку машины?
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
                 Знакомая история: поиск надежного автовоза — квест. Обещание низких цен сменяется переплатой в 1,5-2 раза. В итоге: стресс, переплата, риски повреждений.
               </p>
+              <Badge variant="destructive" className="text-sm">
+                В 2023-2024 стоимость доставки авто выросла в 2+ раза, сроки — непредсказуемы
+              </Badge>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -126,7 +150,7 @@ export default function Index() {
               ))}
             </div>
 
-            <Card className="bg-gradient-to-r from-primary/5 to-accent/5 border-2 border-primary/20">
+            <Card className="bg-gradient-to-r from-primary/5 to-accent/5 border-2 border-primary/20 mb-12">
               <CardContent className="p-8 text-center">
                 <Icon name="Sparkles" className="mx-auto mb-4 text-primary" size={48} />
                 <h3 className="text-2xl font-heading font-bold mb-4">
@@ -345,6 +369,63 @@ export default function Index() {
         </div>
       </section>
 
+      <section id="services" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
+              Дополнительные услуги
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { name: 'КАСКО', desc: 'До 5 млн₽', price: 'от 2% стоимости авто', icon: 'ShieldCheck', gift: false },
+                { name: 'Эвакуация неисправного авто', desc: '', price: '3,000₽', icon: 'Truck', gift: false },
+                { name: 'Мойка после доставки', desc: '', price: '1,500₽', icon: 'Sparkles', gift: true },
+                { name: 'Перевозка личных вещей', desc: '', price: '2,000₽', icon: 'Package', gift: false },
+                { name: 'Хранение на складе', desc: '5 дней бесплатно', price: 'далее 300₽/день', icon: 'Warehouse', gift: false }
+              ].map((service, idx) => (
+                <Card key={idx} className="hover:shadow-lg transition-all hover:-translate-y-1 relative">
+                  {service.gift && (
+                    <Badge className="absolute -top-3 -right-3 bg-accent text-white">🎁 Подарок</Badge>
+                  )}
+                  <CardContent className="p-6">
+                    <Icon name={service.icon} className="text-primary mb-4" size={36} />
+                    <h3 className="font-heading font-bold text-lg mb-2">{service.name}</h3>
+                    {service.desc && <p className="text-sm text-muted-foreground mb-2">{service.desc}</p>}
+                    <p className="text-primary font-semibold">{service.price}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
+              Гарантии безопасности
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { icon: 'Shield', text: 'Страхование в топовой СК до 25 млн₽' },
+                { icon: 'FileText', text: 'Договор с фиксацией условий' },
+                { icon: 'DollarSign', text: 'Компенсация за опоздание 500₽/день' },
+                { icon: 'Camera', text: 'Фото/видеофиксация состояния авто' },
+                { icon: 'Scale', text: 'Юридическая защита' }
+              ].map((guarantee, idx) => (
+                <div key={idx} className="flex items-center gap-4 p-4 bg-muted/30 rounded-lg">
+                  <Icon name={guarantee.icon} className="text-primary flex-shrink-0" size={32} />
+                  <p className="font-medium">{guarantee.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="reviews" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -399,32 +480,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
-              Гарантии безопасности
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { icon: 'Shield', text: 'Страхование в топовой СК до 25 млн₽' },
-                { icon: 'FileText', text: 'Договор с фиксацией условий' },
-                { icon: 'DollarSign', text: 'Компенсация за опоздание 500₽/день' },
-                { icon: 'Camera', text: 'Фото/видеофиксация состояния авто' },
-                { icon: 'Scale', text: 'Юридическая защита' }
-              ].map((guarantee, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-4 bg-muted/30 rounded-lg">
-                  <Icon name={guarantee.icon} className="text-primary flex-shrink-0" size={32} />
-                  <p className="font-medium">{guarantee.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" className="py-20 bg-muted/30">
+      <section id="faq" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
@@ -480,6 +536,44 @@ export default function Index() {
         </div>
       </section>
 
+      <section className="py-20 bg-gradient-to-br from-muted/50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-4">
+              Остались вопросы?
+            </h2>
+            <p className="text-center text-muted-foreground mb-12">
+              Получите бесплатную консультацию от нашего менеджера
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { icon: 'Phone', title: '+7-XXX-XXX-XX-XX', desc: 'Звонок бесплатный' },
+                { icon: 'MessageCircle', title: 'WhatsApp / Telegram', desc: 'Быстрый ответ' },
+                { icon: 'Mail', title: 'info@company.ru', desc: 'Ответим в течение часа' },
+                { icon: 'MapPin', title: 'Владивосток, ул. Примерная, 10', desc: 'Работаем 24/7' }
+              ].map((contact, idx) => (
+                <Card key={idx} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Icon name={contact.icon} className="text-primary" size={24} />
+                    </div>
+                    <div>
+                      <p className="font-semibold">{contact.title}</p>
+                      <p className="text-sm text-muted-foreground">{contact.desc}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <p className="text-center text-muted-foreground mt-8">
+              Менеджер ответит за 5 минут, рассчитает стоимость персонально
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section id="cta-form" className="py-20 bg-gradient-to-br from-primary to-secondary">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
@@ -490,7 +584,7 @@ export default function Index() {
               <p className="text-white/90 text-lg mb-2">
                 Оставьте заявку и получите расчет стоимости за 5 минут
               </p>
-              <Badge className="bg-accent text-white">
+              <Badge className="bg-accent text-white animate-pulse">
                 🔥 За 7 дней — 47 новых заказов
               </Badge>
             </div>
@@ -521,23 +615,31 @@ export default function Index() {
                   </div>
                   <div>
                     <Label htmlFor="route">Маршрут</Label>
-                    <Input
-                      id="route"
-                      placeholder="Уссурийск → Владивосток"
-                      value={formData.route}
-                      onChange={(e) => setFormData({ ...formData, route: e.target.value })}
-                      required
-                    />
+                    <Select value={formData.route} onValueChange={(value) => setFormData({ ...formData, route: value })}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите маршрут" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ussuriisk-vladivostok">Уссурийск → Владивосток</SelectItem>
+                        <SelectItem value="vladivostok-moscow">Владивосток → Москва</SelectItem>
+                        <SelectItem value="vladivostok-spb">Владивосток → Санкт-Петербург</SelectItem>
+                        <SelectItem value="custom">Другой маршрут</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div>
                     <Label htmlFor="carType">Тип автомобиля</Label>
-                    <Input
-                      id="carType"
-                      placeholder="Toyota Camry"
-                      value={formData.carType}
-                      onChange={(e) => setFormData({ ...formData, carType: e.target.value })}
-                      required
-                    />
+                    <Select value={formData.carType} onValueChange={(value) => setFormData({ ...formData, carType: value })}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите тип авто" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="sedan">Седан</SelectItem>
+                        <SelectItem value="crossover">Кроссовер</SelectItem>
+                        <SelectItem value="suv">Внедорожник</SelectItem>
+                        <SelectItem value="minivan">Минивэн</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-6 text-lg">
                     Получить расчет стоимости
@@ -558,7 +660,7 @@ export default function Index() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Icon name="Truck" size={28} />
-                <span className="font-heading font-bold text-xl">AutoTrans</span>
+                <span className="font-heading font-bold text-xl">АВТО АЗРОДИ</span>
               </div>
               <p className="text-white/80 text-sm">
                 Профессиональная перевозка автомобилей по России
@@ -568,7 +670,7 @@ export default function Index() {
             <div>
               <h3 className="font-heading font-bold mb-4">Навигация</h3>
               <ul className="space-y-2 text-sm">
-                {['Тарифы', 'Отзывы', 'FAQ', 'Контакты'].map((item) => (
+                {['Тарифы', 'Услуги', 'Отзывы', 'FAQ', 'Контакты'].map((item) => (
                   <li key={item}>
                     <button className="text-white/80 hover:text-white transition-colors">
                       {item}
@@ -611,7 +713,7 @@ export default function Index() {
           </div>
 
           <div className="border-t border-white/20 pt-8 text-center text-sm text-white/60">
-            <p>© 2025 AutoTrans. Все права защищены.</p>
+            <p>© 2025 АВТО АЗРОДИ. Все права защищены.</p>
           </div>
         </div>
       </footer>
