@@ -78,11 +78,11 @@ export default function Index() {
       </header>
 
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary/95 to-secondary overflow-hidden pt-20">
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-20">
           <img 
-            src="https://cdn.poehali.dev/files/042710e5-8600-4d2f-8416-aaf9d91ee31e.jpg" 
-            alt="Background" 
-            className="w-full h-full object-contain"
+            src="https://cdn.poehali.dev/files/3d66389d-037d-4118-95c2-ed50f21e22b8.jpeg" 
+            alt="Автовоз на дороге" 
+            className="w-full h-full object-cover"
           />
         </div>
         
@@ -119,7 +119,7 @@ export default function Index() {
               </Button>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6 text-white">
+            <div className="flex flex-wrap justify-center gap-6 text-white mb-12">
               {[
                 { icon: 'BadgeCheck', text: 'Фиксированная цена' },
                 { icon: 'Shield', text: 'Страхование без переплат' },
@@ -130,6 +130,23 @@ export default function Index() {
                   <span className="font-medium">{item.text}</span>
                 </div>
               ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mt-12">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                <img 
+                  src="https://cdn.poehali.dev/files/d2989aad-6295-4932-bb82-9b8939d7540c.png" 
+                  alt="Автовоз на горной дороге" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                <img 
+                  src="https://cdn.poehali.dev/files/a3ecef69-7cb6-45f1-a4a3-3e296f1b6809.jpeg" 
+                  alt="Автовоз на мосту во Владивостоке" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
