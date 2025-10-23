@@ -104,7 +104,7 @@ export default function Index() {
             <div className="flex flex-wrap gap-4 justify-center mb-8">
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent/90 text-white font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105"
                 onClick={() => scrollToSection('cta-form')}
               >
                 Получить расчет за 5 минут
@@ -112,7 +112,7 @@ export default function Index() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="font-semibold text-lg px-8 py-6"
+                className="border-primary text-primary hover:bg-primary/10 font-semibold text-lg px-8 py-6"
                 onClick={() => scrollToSection('prices')}
               >
                 Смотреть тарифы
@@ -125,22 +125,22 @@ export default function Index() {
                 { icon: 'Shield', text: 'Страхование без переплат' },
                 { icon: 'MapPin', text: 'Трек авто онлайн' }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 bg-muted px-4 py-2 rounded-full">
-                  <Icon name={item.icon} size={20} />
-                  <span className="font-medium">{item.text}</span>
+                <div key={idx} className="flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full">
+                  <Icon name={item.icon} size={20} className="text-primary" />
+                  <span className="font-medium text-foreground">{item.text}</span>
                 </div>
               ))}
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 mt-12">
-              <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-border">
                 <img 
                   src="https://cdn.poehali.dev/files/d2989aad-6295-4932-bb82-9b8939d7540c.png" 
                   alt="Автовоз на горной дороге" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-border">
                 <img 
                   src="https://cdn.poehali.dev/files/a3ecef69-7cb6-45f1-a4a3-3e296f1b6809.jpeg" 
                   alt="Автовоз на мосту во Владивостоке" 
