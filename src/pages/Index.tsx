@@ -77,7 +77,7 @@ export default function Index() {
         </div>
       </header>
 
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary/95 to-secondary overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden pt-20">
         <div className="absolute inset-0 opacity-20">
           <img 
             src="https://cdn.poehali.dev/files/3d66389d-037d-4118-95c2-ed50f21e22b8.jpeg" 
@@ -91,13 +91,13 @@ export default function Index() {
             <Badge className="mb-6 bg-accent hover:bg-accent text-white px-4 py-2 text-sm animate-pulse">
               Доставили 2500+ автомобилей
             </Badge>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6 leading-tight">
               {h1Variants[selectedH1]}
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-foreground/90 mb-4 max-w-3xl mx-auto">
               Безопасно, с гарантией и полным страхованием
             </p>
-            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+            <p className="text-foreground/80 mb-8 max-w-2xl mx-auto">
               Автовозы класса люкс и эконом. Работаем по договору с фиксацией сроков. Перевозим легковые авто, кроссоверы и внедорожники по всей России
             </p>
             
@@ -112,20 +112,20 @@ export default function Index() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm font-semibold text-lg px-8 py-6"
+                className="font-semibold text-lg px-8 py-6"
                 onClick={() => scrollToSection('prices')}
               >
                 Смотреть тарифы
               </Button>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6 text-white mb-12">
+            <div className="flex flex-wrap justify-center gap-6 mb-12">
               {[
                 { icon: 'BadgeCheck', text: 'Фиксированная цена' },
                 { icon: 'Shield', text: 'Страхование без переплат' },
                 { icon: 'MapPin', text: 'Трек авто онлайн' }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                <div key={idx} className="flex items-center gap-2 bg-muted px-4 py-2 rounded-full">
                   <Icon name={item.icon} size={20} />
                   <span className="font-medium">{item.text}</span>
                 </div>
